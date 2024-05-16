@@ -1,0 +1,85 @@
+﻿@using NewsWebTest.NewsModels
+@model NewsWebTest.NewsModels.NewsApiResponse
+
+@{
+    ViewBag.Title = "ApiDataView";
+}
+
+  <link rel="stylesheet" href="~/css/site.css">
+
+@if (Model != null)
+{
+
+
+           <nav>
+            <div class="main-nav container flex">
+               
+                   <h2>News</h2>
+             
+                <div class="nav-links">
+                @using (Html.BeginForm("CallApi", "News", FormMethod.Post))
+                {
+                    {
+                        <div class="input-group">
+                            <ul class="flex">
+                                <li class="hover-link nav-item">
+                                    <button type="submit" name="keyword" value="IPL">IPL</button>
+                                </li>
+                                <li class="hover-link nav-item">
+                                    <button type="submit" name="keyword" value="Finance">Finance</button>
+                                </li>
+                                <li class="hover-link nav-item">
+                                    <button type="submit" name="keyword" value="Politics">Politics</button>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    }
+                </div>
+            @using (Html.BeginForm("CallApi", "News", FormMethod.Post))
+            {
+                <div class="search-bar flex">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="keyword" placeholder="Enter keyword...">
+
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </span>
+                    </div>
+                </div>
+            }
+            </div>
+        </nav>
+
+
+        <main>
+            <div class="cards-container container flex" id="cards-container">
+
+         
+
+            @foreach (var article in Model.Articles)
+    {
+                <a href="@article.Url" class="card-link" target="_blank">
+                <div class="card">
+                    <div class="card-header">
+                        @if (!string.IsNullOrEmpty(article.UrlToImage))
+                        {
+                            <img src="@article.UrlToImage" alt="news-image">
+                        }
+                    </div>
+                    <div class="card-content">
+                        <h3>@article.Title</h3>
+                        <h6 class="news-source">@article.PublishedAt</h6>
+                        <p class="news-desc">@article.Description</p>
+                    </div>
+                </div>
+                </a>
+      
+    }
+           </div>
+            </main>
+
+
+
+}
+

@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to the News API Website!</h1>
+    <p class="lead">Search for news articles by entering a keyword below.</p>
+    <div class="row">
+        <div class="col-md-6">
+            @using (Html.BeginForm("CallApi", "News", FormMethod.Post))
+            {
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="keyword" placeholder="Enter keyword...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </span>
+                    </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>About</h2>
+        <p>This is a simple website to demonstrate using the News API to fetch and display news articles based on user input.</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Instructions</h2>
+        <p>Enter a keyword in the search box above and click "Search" to find relevant news articles.</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Contact</h2>
+        <p>If you have any questions or feedback, please contact us.</p>
+    </div>
+</div>
